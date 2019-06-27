@@ -11,5 +11,5 @@ python3 merger.py
 
 # Requirements:
 ```
-pandas==0.23.0
+pandas==0.22.0
 ```
