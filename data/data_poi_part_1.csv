@@ -1,0 +1,51 @@
+id_store;address;variable1;category
+1;"100 High St.";74;A
+2;"382-384 Brixton Rd";91;A
+3;"11, little stonegate";13;A
+4;"corner of pittville & albion street, cheltenham";48;A
+5;"16 high street, unit 7, grant’s entertainment centre";71;A
+6;"22-24 the exchange way, chelmsford";25;A
+7;"11 bridge st";12;A
+8;"81-91 john bright st";39;A
+9;"the citrus building, 24 madeira road";31;A
+10;"8 broad quay";87;A
+11;"221 – 223 cheltenham road";60;A
+12;"hodgehouse, 114-116 st mary’s street";71;A
+13;"1-5 the wardwick, cathedral quarter";89;A
+14;"16 high street, ealing";31;A
+15;"guildhall, queen st";13;A
+16;"1 north street, guildford";91;B
+17;"50 kings st";58;B
+18;"11 regents court";32;B
+19;"14 the light, the headrow";8;B
+20;"15 bathhouse lane,  highcross";15;A
+21;"59-61 hanover street";98;B
+22;"produce exchange";27;B
+23;"46-50 oldham st";48;B
+24;"33-35 oxford st";1;B
+25;"5 mortimer square,  the hub";53;A
+26;"117 newgate st";85;B
+27;"8 swan lane, norwich";10;B
+28;"The Cornerhouse, 12 Trinity Square";19;B
+29;"12 Friars Entry, Magdalen St";34;B
+30;"Crystal House, Birley St";6;B
+31;"36-38 Station Road";1;C
+32;"1 Guildhall Square";7;C
+33;"24-26 High St";97;C
+34;"The Scene, Cleveland Place, 269 High Street, Walthamstow";15;C
+35;"45-47 Marygate Berwick-Upon-Tweed TD15 1AX";56;C
+36;"112-114 English Street Carlisle CA3 8ND";68;C
+37;"36-49 Clifford Road Stanley DH9 0XG";40;C
+38;"51-53 FRONT STREET CHESTER-LE-STREET DH3 3BH";69;C
+39;"MIDDLETON GRANGE SHOPPING CENTRE PARK ROAD HARTLEPOOL TS24 7RZ";6;C
+40;"50-52 NEWGATE STREET BISHOP AUCKLAND DL14 7EQ";72;C
+41;"12 IVISON LANE WORKINGTON CA14 3DY";55;C
+42;"49 HIGH STREET REDCAR TS10 3BZ";66;C
+43;"64 QUEENSWAY BILLINGHAM TS23 2NP";42;C
+44;"CASTLEGATE SHOPPING CENTRE HIGH STREET STOCKTON-ON-TEES – TS18 1AF";44;C
+45;"CORNMILL SHOPPING CENTRE CORNMILL CENTRE DARLINGTON – DL1 1LS";98;C
+46;"26-27 BAXTERGATE WHITBY - YO21 1BW";56;C
+47;"167 HIGH STREET NORTHALLERTON – DL7 8JZ";34;C
+48;"20-21 Brunswick Shopping Centre Scarborough - YO11 1UE";55;C
+49;"107-109 Dalton Road Barrow-In-Furness – LA14 1HZ";83;D
+50;"Promenades Shopping Centre 31 The Promenades Shopping Centre Bridlington – YO15 2DX";97;D
