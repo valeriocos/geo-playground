@@ -1,15 +1,21 @@
 # Geo-playground [![Build Status](https://travis-ci.org/valeriocos/geo-playground.svg?branch=master)](https://travis-ci.org/valeriocos/geo-playground)[![Coverage Status](https://coveralls.io/repos/github/valeriocos/geo-playground/badge.svg?branch=master)](https://coveralls.io/github/valeriocos/geo-playground?branch=master)
 
-## How to:
-
+## Requirements:
 ```
-python3 merger.py 
-        -p1 ./data/data_poi_part_1.csv 
-        -p2 ./data/data_poi_part_2.csv
-        -out ./data/data_join.csv
+pandas>=0.21.0
 ```
 
-# Requirements:
+## How to install:
+
 ```
-pandas==0.22.0
+$ cd geo-playground
+$ pip install .
+```
+
+## How to execute:
+```
+$ merger 
+    -p1 ./data/data_poi_part_1.csv 
+    -p2 ./data/data_poi_part_2.csv
+    -out ./data/data_join.csv
 ```

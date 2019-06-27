@@ -8,11 +8,11 @@ import tempfile
 import unittest
 import uuid
 
-from merger import (merge,
-                    prepare_df,
-                    MergerError,
-                    DELIMITER,
-                    DECIMALS)
+from geo_playground.merger import (merge,
+                                   prepare_df,
+                                   MergerError,
+                                   DELIMITER,
+                                   DECIMALS)
 
 
 def read_file(filename, mode='r'):
