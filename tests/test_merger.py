@@ -9,6 +9,7 @@ import unittest
 import uuid
 
 from geo_playground.merger import (merge,
+                                   normalize,
                                    prepare_df,
                                    MergerError,
                                    DELIMITER,
@@ -110,6 +111,19 @@ class TestMerger(unittest.TestCase):
 
         with self.assertRaises(FileNotFoundError):
             merge(file_path1, file_path2, output_path)
+
+    def test_normalize(self):
+        """Test whether the normalize works"""
+
+        address = '100 High St.'
+        expected = '100@@@high@@@street'
+
+        self.assertEqual(normalize(address), expected)
+
+        address = '51-53 FRONT STREET CHESTER-LE-STREET DH3 3BH'
+        expected = '3bh@@@51@@@53@@@chester@@@dh3@@@front@@@le@@@street@@@street'
+
+        self.assertEqual(normalize(address), expected)
 
 
 if __name__ == "__main__":

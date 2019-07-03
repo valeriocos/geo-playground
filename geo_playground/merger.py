@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import re
 import pandas as pd
 
 
@@ -16,6 +17,18 @@ OUTPUT_COLUMNS = [STORE_ID, VAR1, VAR2, RATIO]
 
 DELIMITER = ';'
 DECIMALS = "%.2f"
+
+# https://trafficsignstore.com/abbreviations.html
+ABBRS = {
+    'st': 'street',
+    'rd': 'road',
+    'sq': 'square',
+    'pl': 'place',
+    'bl': 'bridge',
+    'rte': 'route',
+}
+
+SEPARATOR = '@@@'
 
 
 class MergerError(Exception):
@@ -44,7 +57,9 @@ def merge(csv1_path, csv2_path, csv_out_path):
     if df1.shape[0] != df2.shape[0]:
         raise MergerError("Dataframes with different number of rows")
 
-    df_merge = pd.merge(df1[[ROW_ID, STORE_ID, ADDRESS, VALUE]], df2[[ROW_ID, ADDRESS, VALUE]], on=ROW_ID)
+    df_merge = pd.merge(df1[[ROW_ID, STORE_ID, ADDRESS, ADDRESS_NORM, VALUE]],
+                        df2[[ROW_ID, ADDRESS, ADDRESS_NORM, VALUE]],
+                        on=ADDRESS_NORM)
     df_merge[RATIO] = df_merge.apply(lambda row: DECIMALS % (row.value_x / row.value_y) if row.value_y > 0 else -1,
                                      axis=1)
     df_merge = df_merge[[STORE_ID, VALUE + '_x', VALUE + '_y', RATIO]]
@@ -72,20 +87,58 @@ def prepare_df(csv_path, var_name):
     """
     df = pd.read_csv(csv_path, sep=DELIMITER)
 
-    df_norm = pd.DataFrame(columns=[ROW_ID, STORE_ID, ADDRESS, VALUE])
+    df_norm = pd.DataFrame(columns=[ROW_ID, STORE_ID, ADDRESS, ADDRESS_NORM, VALUE])
 
     for index, row in df.iterrows():
         store_id = row.get('id_store', '')
         address = row['address']
+        normalize_address = normalize(row['address'])
         var = row[var_name]
 
         item = {
             ROW_ID: index,
             STORE_ID: store_id,
             ADDRESS: address,
+            ADDRESS_NORM: normalize_address,
             VALUE: float(var)
         }
 
         df_norm.loc[index] = item
 
     return df_norm
+
+
+def normalize(address):
+    """Normalize a given address by applying simple string manipulation operations.
+
+    The operations applied to an address are the following:
+    - convert the address to lowercase
+    - replace non-alphanumeric chars with `SEPARATOR`
+    - replace known address abbreviations (e.g., st., rd.) with full values
+    - sort the address to simplify comparison with other addresses
+
+    Find below some examples:
+        - '100 High St.'         -> '100@@@high@@@street'
+        - '382-384 Brixton Rd'   -> '382@@@384@@@brixton@@@rd'
+        - '11, little stonegate' -> '11@@@little@@@stonegate'
+
+    :param address: address info
+
+    :returns a normalized version of the address
+    """
+    replacement = re.sub('\W+', SEPARATOR, address.lower())
+
+    processed = []
+    for p in replacement.split(SEPARATOR):
+        if not p:
+            continue
+
+        if p in ABBRS:
+            processed.append(ABBRS[p])
+        else:
+            processed.append(p)
+
+    processed.sort()
+
+    normalized = SEPARATOR.join(processed)
+    return normalized
